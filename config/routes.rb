@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   root to: 'home_page#index'
 
-  resources :events, only: %i[index]
+  resources :events, only: %i[index show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
