@@ -15,5 +15,5 @@ table.table.table-dark
         th = event.city
         th = event.date.strftime("%d/%m/%Y %H:%M")
         th
-          button.btn.btn-info Check
+          a.btn.btn.btn-info href=event_path(event)  Check
         - i+=1
