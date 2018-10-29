@@ -1,0 +1,11 @@
+AllCops:
+  Excludes:
+  - config/unicorn.rb
+  - db/**
+  - db/migrate/*
+  - config/**/*.rb
+  - db/**/*.rb
+  - bin/**
+
+Documentation:
+  Enabled: false

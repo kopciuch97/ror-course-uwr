@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
-  def index()
+  def index
     @events = Event.all
   end
 
