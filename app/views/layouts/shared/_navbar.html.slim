@@ -7,3 +7,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
       li.nav-item class=(current_page?(controller: 'events') ? 'active' : '')
         a.nav-link href=events_path
           | Events
+    ul.navbar-nav.justify-content-end
+      li.nav-item class=(current_page?(action: "new", controller: 'users') ? 'active' : '')
+        a.nav-link href=signup_path
+          | Sign Up
