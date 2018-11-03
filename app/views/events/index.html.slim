@@ -1,0 +1,19 @@
+table.table.table-dark
+  thead
+    tr
+      th #
+      th Name
+      th City
+      th Date
+      th Check Event
+  tbody
+    - i = 1
+    - @events.each do |event|
+      tr
+        th = i
+        th = event.name
+        th = event.city
+        th = event.date.strftime("%d/%m/%Y %H:%M")
+        th
+          a.btn.btn.btn-info href=event_path(event)  Check
+        - i+=1

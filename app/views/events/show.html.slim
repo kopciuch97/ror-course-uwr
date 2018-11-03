@@ -1,0 +1,27 @@
+.card.text-center
+  .card-header
+    | Event
+  .card-body
+    h4.card-title = @event.name
+    p.card-text = @event.content
+    - if !@event.tickets.empty?
+      table.table.table-dark
+        thead
+          tr
+            th Place
+            th Price
+            th Buy
+        tbody
+          - @event.tickets.each do |ticket|
+            tr
+              th = ticket.place
+              th = ticket.price
+              th
+                / a.btn.btn.btn-success href="#"  Buy
+                button.btn.btn-success Buy
+
+
+
+
+  .card-footer.text-muted
+    = @event.date.strftime("%d/%m/%Y %H:%M")
