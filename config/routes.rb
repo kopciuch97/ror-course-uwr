@@ -8,12 +8,14 @@ Rails.application.routes.draw do
   root to: 'home_page#index'
 
   resources :events, only: %i[index show]
+  resources :tickets, only: %i[index create]
+  # get 'sell_ticket', to: 'tickets#index'
+  # post 'sell_ticket', to: 'tickets#create'
 
   namespace :user_panel, path: 'users' do
     root to: 'profile#index'
   end
 
-  # get '/users/profile', to: 'user_panel#index'
-  # resources :users
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
