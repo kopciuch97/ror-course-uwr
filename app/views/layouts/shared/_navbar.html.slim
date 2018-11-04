@@ -10,7 +10,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
     ul.navbar-nav.justify-content-end
       - if user_signed_in?
         li.nav-item.active
-          a.nav-link href=root_path
+          a.nav-link href=user_panel_root_path
             | #{current_user.email}
         li.nav-item
           = link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link"
