@@ -4,10 +4,19 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
     span.navbar-toggler-icon
   #navbarText.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      li.nav-item class=(current_page?(controller: 'events') ? 'active' : '')
+      li.nav-item class=(current_page?(controller: '/events') ? 'active' : '')
         a.nav-link href=events_path
           | Events
     ul.navbar-nav.justify-content-end
-      li.nav-item class=(current_page?(action: "new", controller: 'users') ? 'active' : '')
-        a.nav-link href=signup_path
-          | Sign Up
+      - if user_signed_in?
+        li.nav-item.active
+          a.nav-link href=root_path
+            | #{current_user.email}
+        li.nav-item
+          = link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link"
+      - else
+        li.nav-item class=(current_page?(action: "create", controller: "/devise/sessions") ? 'active' : '')
+          = link_to "Log in", new_user_session_path, class: "nav-link"
+        li.nav-item class=(current_page?(action: "new", controller: '/devise/registrations') ? 'active' : '')
+          = link_to "Sign up", new_user_registration_path, class: "nav-link"
+

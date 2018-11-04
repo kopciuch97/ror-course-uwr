@@ -13,6 +13,11 @@
     <%= render partial: 'layouts/shared/navbar' %>
 
     <div class="container">
+      <% flash_collect_alerts(flash).each do |key, value| %>
+        <div class="<%= flash_class(key) %>">
+              <%= value %>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
 
