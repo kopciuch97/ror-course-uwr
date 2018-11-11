@@ -2,9 +2,9 @@
   .card-header
     | Event
   .card-body
-    h4.card-title = @event.name
-    p.card-text = @event.content
-    - if !@event.tickets.empty?
+    h4.card-title = @view.event.name
+    p.card-text = @view.event.content
+    - if !@view.event.tickets.empty?
       table.table.table-dark
         thead
           tr
@@ -12,7 +12,7 @@
             th Price
             th Buy
         tbody
-          - @event.tickets.each do |ticket|
+          - @view.event.tickets.each do |ticket|
             tr
               th = ticket.place
               th = ticket.price
@@ -24,4 +24,4 @@
 
 
   .card-footer.text-muted
-    = @event.date.strftime("%d/%m/%Y %H:%M")
+    = @view.event.date.strftime("%d/%m/%Y %H:%M")

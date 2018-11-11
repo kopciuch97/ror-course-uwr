@@ -2,11 +2,10 @@
 
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = EventsViewModel.new.events(params[:name])
   end
 
   def show
-    @event = Event.find(params[:id])
-    @tickets = Ticket.new(event: @event)
+    @view = EventsViewModel.new.show_event(params[:id])
   end
 end

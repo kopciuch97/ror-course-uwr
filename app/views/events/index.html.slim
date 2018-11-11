@@ -1,3 +1,10 @@
+- if user_signed_in?
+  = form_tag events_path, method: :get do
+    .input-group
+      input.form-control placeholder = ("Name event") type="text" name="name" /
+      .input-group-append
+        button.btn.btn-info type="submit"  Button
+
 table.table.table-dark
   thead
     tr
@@ -7,13 +14,16 @@ table.table.table-dark
       th Date
       th Check Event
   tbody
-    - i = 1
-    - @events.each do |event|
+    - @events.each_with_index do |event, index|
       tr
-        th = i
+        th = index + 1
         th = event.name
         th = event.city
         th = event.date.strftime("%d/%m/%Y %H:%M")
         th
           a.btn.btn.btn-info href=event_path(event)  Check
-        - i+=1
+
+/ - if user_signed_in?
+/   = form_tag events_path, method: :get do
+/     = text_field_tag :name
+/     = submit_tag 'Search'
