@@ -39,10 +39,12 @@ gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1.3'
 gem 'devise'
+gem 'devise-bootstrap-views', '~> 1.0'
 gem 'jquery-rails'
 gem 'rubocop'
 gem 'slim-rails'
 gem 'active_interaction', '~> 3.6'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to

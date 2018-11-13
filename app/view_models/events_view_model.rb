@@ -5,9 +5,9 @@ class EventsViewModel
 
   def events(name)
     @events = if name
-                Event.where('name LIKE ?', "%#{name}%")
+                Event.where('name LIKE ? and status = 0', "%#{name}%")
               else
-                Event.all
+                Event.show_events(:show)
               end
   end
 
