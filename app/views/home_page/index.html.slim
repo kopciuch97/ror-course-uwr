@@ -1,17 +1,20 @@
-table.table.table-dark
-  thead
-    tr
-      th #
-      th Name
-      th City
-      th Date
-      th Check Event
-  tbody
-    - @events.each_with_index do |event, index|
+= render partial:'events/shared/promoted'
+
+.row
+  table.table.table-dark
+    thead
       tr
-        th = index + 1
-        th = event.name
-        th = event.city
-        th = event.date.strftime("%d/%m/%Y %H:%M")
-        th
-          a.btn.btn.btn-info href=event_path(event)  Check
+        th #
+        th Name
+        th City
+        th Date
+        th Check Event
+    tbody
+      - @events.each_with_index do |event, index|
+        tr
+          th = index + 1
+          th = event.name
+          th = event.city
+          th = event.date.strftime("%d/%m/%Y %H:%M")
+          th
+            a.btn.btn.btn-info href=event_path(event)  Check

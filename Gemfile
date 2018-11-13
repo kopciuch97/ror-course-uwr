@@ -43,6 +43,7 @@ gem 'jquery-rails'
 gem 'rubocop'
 gem 'slim-rails'
 gem 'active_interaction', '~> 3.6'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to

@@ -2,6 +2,7 @@
 
 class HomePageController < ApplicationController
   def index
-    @events = Event.limit(5)
+    @events_promoted = Event.show_events(:promoted)
+    @events = Event.show_events(:show).limit(5)
   end
 end
