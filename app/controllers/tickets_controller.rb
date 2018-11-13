@@ -25,10 +25,10 @@ class TicketsController < ApplicationController
     ticket = Ticket.find(params[:ticket_id])
     ticket.buy_ticket(ticket.id, current_user.id)
 
-    flash[:notice] = if @ticket.save
+    flash[:notice] = if ticket.save
                        'Bilet zostal kupiony'
                      else
-                       @ticket.errors.full_messages.join('. ')
+                       ticket.errors.full_messages.join('. ')
                      end
     redirect_to root_path
   end

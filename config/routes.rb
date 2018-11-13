@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   root to: 'home_page#index'
 
   resources :events, only: %i[index show]
-  resources :tickets, only: %i[index create buy]
+  resources :tickets, only: %i[index create buy] do
+    member do
+      get :buy
+    end
+  end
     # get 'sell_ticket', to: 'tickets#index'
   # post 'sell_ticket', to: 'tickets#create'
 
@@ -18,3 +22,4 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
