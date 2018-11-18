@@ -3,7 +3,7 @@
 class EventsController < ApplicationController
   def index
     @events = EventsViewModel.new.events(params[:name])
-    @events_promoted = Event.show_events(:promoted)
+    @events_promoted = Event.promoted
   end
 
   def show
