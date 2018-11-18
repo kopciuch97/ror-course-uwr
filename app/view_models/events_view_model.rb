@@ -1,13 +1,10 @@
 class EventsViewModel
-  # def initialize(name)
-  #   @name ||= name
-  # end
 
   def events(name)
     @events = if name
-                Event.where('name LIKE ?', "%#{name}%")
+                Event.visible.where('name LIKE ?', "%#{name}%")
               else
-                Event.all
+                Event.visible
               end
   end
 
