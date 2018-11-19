@@ -1,16 +1,15 @@
-class TicketsController < ApplicationController
+# frozen_string_literal: true
 
+class TicketsController < ApplicationController
   before_action :authenticate_user!
-  before_action :can_edit, only: [:edit, :update]
+  before_action :can_edit, only: %i[edit update]
   def index
     @events = Event.all
     @ticket = Ticket.new
   end
 
   def create
-    @ticket = Ticket.new(
-                        params.require(:ticket).permit(:place, :event_id, :price).merge(owner_id: current_user.id)
-    )
+    @ticket = Ticket.new(params.require(:ticket).permit(:place, :event_id, :price).merge(owner_id: current_user.id))
     flash[:notice] = if @ticket.save
                        'Bilet zostal wystawiony'
                      else
@@ -38,13 +37,11 @@ class TicketsController < ApplicationController
 
   def update
     parameters = params.require(:ticket).permit(:place, :event_id, :price)
-
     if @ticket.update(parameters)
-      flash[:notice] = "Your ticket has been edited."
+      flash[:notice] = 'Your ticket has been edited.'
     else
-      flash[:alert] = "Your ticket hasn't been edited."
+      flash[:alert] = 'Your ticket has not been edited.'
     end
-
     redirect_to user_panel_root_url
   end
 
@@ -52,14 +49,12 @@ class TicketsController < ApplicationController
 
   def can_edit
     @ticket = Ticket.find(params[:id])
-
     if @ticket.owner_id != current_user.id
-      flash[:alert] = "You can edit only your own ticket."
+      flash[:alert] = 'You can edit only your own ticket.'
       redirect_to root_path
     end
-
     unless @ticket.bought_by.nil?
-      flash[:alert] = "Ticket has already been sold, so it can't be modified."
+      flash[:alert] = 'Ticket has already been sold, so it can not be modified.'
       redirect_to root_path
     end
   end

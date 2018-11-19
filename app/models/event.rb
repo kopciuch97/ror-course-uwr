@@ -5,10 +5,9 @@ class Event < ApplicationRecord
 
   has_one_attached :image
 
-  enum status: [:visible, :hidden, :promoted]
+  enum status: %i[visible hidden promoted]
 
-  scope :promoted, -> {where(status: :promoted)}
-  scope :hidden, -> {where(status: :hidden)}
-  scope :visible, -> {where(status: :visible)}
+  scope :promoted, -> { where(status: :promoted) }
+  scope :hidden, -> { where(status: :hidden) }
+  scope :visible, -> { where(status: :visible) }
 end
-

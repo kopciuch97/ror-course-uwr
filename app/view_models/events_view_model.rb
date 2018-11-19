@@ -1,5 +1,6 @@
-class EventsViewModel
+# frozen_string_literal: true
 
+class EventsViewModel
   def events(name)
     @events = if name
                 Event.visible.where('name LIKE ?', "%#{name}%")

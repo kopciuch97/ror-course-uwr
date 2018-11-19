@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Event do
   permit_params :name, :content, :city, :date, :status, :image
 
@@ -10,9 +12,7 @@ ActiveAdmin.register Event do
       row :content
       row :date
       row :image do |ad|
-        if ad.image.attached?
-          image_tag url_for(ad.image)
-        end
+        if ad.image.attached? then image_tag url_for(ad.image); end
       end
     end
   end
