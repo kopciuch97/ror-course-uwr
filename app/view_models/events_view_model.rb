@@ -6,6 +6,7 @@ class EventsViewModel
               else
                 Event.visible
               end
+    @events.left_joins(:tickets).group(:event_id, :id)
   end
 
   def show_event(id)
