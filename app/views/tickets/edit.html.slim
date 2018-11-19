@@ -1,0 +1,20 @@
+.row
+  .card.w-100
+    .card-body
+      h5.card-title Edit ticket
+      / = @ticket.place
+      = form_for @ticket, method: :patch do |f|
+        .form-group
+          label for="place" Sector
+          = f.text_field :place, class: 'form-control', id: 'place', placeholder: "Enter sector"
+
+        .form-group
+          label for="event"  Select event
+          = select_tag "ticket[event_id]", options_from_collection_for_select(@events, "id", "name", @ticket.event_id), class: "form-control", id: 'event'
+
+
+        .form-group
+          label for="price" Price
+          = f.number_field :price, class: 'form-control', id: 'price', min: 0.00, step: 0.01
+
+        = f.submit 'Edit', class: 'button btn btn-primary'
