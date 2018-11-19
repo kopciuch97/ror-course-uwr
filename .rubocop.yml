@@ -6,6 +6,7 @@ AllCops:
   - config/**/*.rb
   - db/**/*.rb
   - bin/**
+  - spec/*_helper.rb
 
 Documentation:
   Enabled: false
