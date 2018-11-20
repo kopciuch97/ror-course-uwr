@@ -1,4 +1,5 @@
-https://travis-ci.com/kopciuch97/ror-course-uwr.svg?branch=dev
+![Travis CI](https://travis-ci.com/kopciuch97/ror-course-uwr.svg?branch=dev&sanitize=true)
+
 # DEFINITION OF DONE 
 1. All goals and objectives must be done 
 2. Feature must be merged to develop
