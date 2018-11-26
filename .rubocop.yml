@@ -1,11 +1,35 @@
 AllCops:
-  Excludes:
-  - config/unicorn.rb
-  - db/**
-  - db/migrate/*
-  - config/**/*.rb
-  - db/**/*.rb
-  - bin/**
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'vendor/bundle/**/*'
+    - 'config/unicorn.rb'
+    - 'db/**'
+    - 'db/migrate/*'
+    - 'config/**/*.rb'
+    - 'db/**/*.rb'
+    - 'bin/**'
+    - 'Gemfile'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+  TargetRubyVersion: 2.5
 
 Documentation:
   Enabled: false
+
+Metrics/LineLength:
+  Exclude:
+    - 'app/controllers/tickets_controller.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/controllers/tickets_controller.rb'
+
+Style/GuardClause:
+  Exclude:
+  - 'app/controllers/tickets_controller.rb'
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'app/admin/events.rb'
+
