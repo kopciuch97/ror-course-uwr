@@ -2,7 +2,7 @@
 
 class TicketsController < ApplicationController
   before_action :authenticate_user!
-  before_action :can_edit, only: %i[edit update]
+
   def index
     @events = Event.all
     @ticket = Ticket.new
@@ -32,30 +32,21 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    @ticket = current_user.issued_tickets.find(params[:id])
     @events = Event.all
   end
 
   def update
+    @ticket = current_user.issued_tickets.find(params[:id])
     parameters = params.require(:ticket).permit(:place, :event_id, :price)
-    if @ticket.update(parameters)
+
+    outcome = UpdateTicket.run(ticket: @ticket, ticket_parameters: parameters.to_h)
+    if outcome.valid?
       flash[:notice] = 'Your ticket has been edited.'
     else
-      flash[:alert] = 'Your ticket has not been edited.'
+      flash[:alert] = outcome.errors.full_messages.join('. ')
     end
+
     redirect_to user_panel_root_url
-  end
-
-  private
-
-  def can_edit
-    @ticket = Ticket.find(params[:id])
-    if @ticket.owner_id != current_user.id
-      flash[:alert] = 'You can edit only your own ticket.'
-      redirect_to root_path
-    end
-    unless @ticket.bought_by.nil?
-      flash[:alert] = 'Ticket has already been sold, so it can not be modified.'
-      redirect_to root_path
-    end
   end
 end
