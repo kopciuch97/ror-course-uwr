@@ -18,8 +18,7 @@ Documentation:
   Enabled: false
 
 Metrics/LineLength:
-  Exclude:
-    - 'app/controllers/tickets_controller.rb'
+  Max: 120
 
 Metrics/AbcSize:
   Exclude:

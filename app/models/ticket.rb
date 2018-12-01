@@ -9,6 +9,6 @@ class Ticket < ApplicationRecord
 
   def buy_ticket(ticket_id, user_id)
     ticket = Ticket.find(ticket_id)
-    ticket.bought_by = user_id
+    ticket.bought_by_id = user_id
   end
 end

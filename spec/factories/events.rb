@@ -8,5 +8,13 @@ FactoryBot.define do
     after :create do |event|
       create_list :ticket, 3, event: event
     end
+
+    trait :with_sold_tickets do
+      after :create do |event|
+        create_list :sold_ticket, 3, event: event
+      end
+    end
+
+    factory :event_with_sold_tickets, traits: [:with_sold_tickets]
   end
 end
