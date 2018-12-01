@@ -2,9 +2,9 @@
   .card-header
     | Event
   .card-body
-    h4.card-title = @view.event.name
-    p.card-text = @view.event.content
-    - if !@view.event.tickets.empty?
+    h4.card-title = @event.name
+    p.card-text = @event.content
+    - if !@event.tickets.empty?
       table.table.table-hover
         thead
           tr
@@ -12,16 +12,15 @@
             th Price
             th Buy
         tbody
-          - @view.event.tickets.each do |ticket|
+          - @tickets.each do |ticket|
             tr
               th = ticket.place
               th = ticket.price
               th
-                /a.btn.btn.btn-success href=  Buy
-                button.btn.btn-success Buy
+                = button_to "Buy", buy_ticket_path(ticket.id), method: :post, class: "btn btn-success"
 
 
 
 
   .card-footer.text-muted
-    = @view.event.date.strftime("%d/%m/%Y %H:%M")
+    = @event.date.strftime("%d/%m/%Y %H:%M")
