@@ -19,8 +19,8 @@ RSpec.describe UpdateTicket do
     end
 
     context 'edit sold ticket' do
-      let(:event_with_sold_tickets) { FactoryBot.create :event_with_sold_tickets }
-      let(:ticket) { event_with_sold_tickets.tickets[0] }
+      let(:event) { FactoryBot.create :event_with_sold_tickets }
+      let(:ticket) { event.tickets[3] }
 
       it 'is not valid' do
         expect(outcome).to_not be_valid

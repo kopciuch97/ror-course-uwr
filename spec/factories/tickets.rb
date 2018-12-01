@@ -6,13 +6,11 @@ FactoryBot.define do
     association :owner, factory: :user
     place { 5 }
     price { 10.0 }
-  end
 
-  factory :ticket_sold, class: Ticket do
-    association :event, factory: :event
-    association :owner, factory: :user
-    association :bought_by, factory: :user
-    place { 5 }
-    price { 10.0 }
+    trait :sold do
+      association :bought_by, factory: :user
+    end
+
+    factory :sold_ticket, traits: [:sold]
   end
 end
