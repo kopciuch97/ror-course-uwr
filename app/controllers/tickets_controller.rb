@@ -20,14 +20,17 @@ class TicketsController < ApplicationController
   end
 
   def buy
-    ticket = Ticket.find(params[:ticket_id])
-    ticket.buy_ticket(ticket.id, current_user.id)
+    outcome = BuyTicket.run(
+      ticket: Ticket.find(params[:id]),
+      user: current_user
+    )
 
-    flash[:notice] = if @ticket.save
-                       'Bilet zostal kupiony'
-                     else
-                       @ticket.errors.full_messages.join('. ')
-                     end
+    if outcome.valid?
+      flash[:notice] = 'You have bought ticket.'
+    else
+      flash[:alert] = outcome.errors.full_messages.join('. ')
+    end
+
     redirect_to root_path
   end
 
