@@ -64,4 +64,49 @@ RSpec.describe TicketsController, type: :controller do
       end
     end
   end
+  describe 'PUT #update' do
+    let(:ticket) { create :ticket, owner: user }
+    let(:params) do
+      {
+        id: ticket.id,
+        ticket: {
+          place: 'auu',
+          event_id: event.id,
+          price: 1.0
+        }
+      }
+    end
+
+    it 'located the requested ticket' do
+      put :update, params: params
+      expect(assigns(:ticket)).to eq(ticket)
+    end
+
+    it 'changes ticket attributes' do
+      put :update, params: params
+      expect(controller.flash[:notice]).to match(/ticket has been edited/)
+      ticket.reload
+      expect(ticket.place).to eq('auu')
+      expect(ticket.event).to eq(event)
+      expect(ticket.price).to eq(1.0)
+    end
+
+    it 'doesn\'t change attributes' do
+      put :update, params: {
+        id: ticket.id,
+        ticket: { place: 'x' }
+      }
+      expect(controller.flash[:alert]).to_not be(nil)
+      ticket.reload
+      expect(ticket.place).to eq('5')
+    end
+
+    it 'redirects to user panel' do
+      put :update, params: {
+        id: ticket.id,
+        ticket: params
+      }
+      expect(response).to redirect_to(user_panel_root_url)
+    end
+  end
 end
