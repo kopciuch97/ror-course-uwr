@@ -7,8 +7,9 @@ class Ticket < ApplicationRecord
   validates :place, length: { in: 1..20 }
   validates :price, numericality: { greater_than: 0 }
 
-  def buy_ticket(ticket_id, user_id)
-    ticket = Ticket.find(ticket_id)
-    ticket.bought_by_id = user_id
+  scope :to_sell, -> { where(bought_by_id: nil) }
+
+  def buy(user)
+    self.bought_by = user
   end
 end

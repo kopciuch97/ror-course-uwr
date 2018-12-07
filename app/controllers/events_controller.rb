@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @view = EventsViewModel.new.show_event(params[:id])
+    @event = Event.find(params[:id])
+    @tickets = @event.tickets.to_sell
   end
 end

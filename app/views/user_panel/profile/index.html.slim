@@ -11,7 +11,7 @@ h1 User panel
   .card.w-75
     .card-body
       h5.card-title Your tickets:
-      - if @tickets.any?
+      - if @own_tickets.any?
         .row
           table.table.table-hover
             thead
@@ -21,7 +21,7 @@ h1 User panel
                 th.col-2 Price
                 th.col-3 Manage
             tbody
-              - @tickets.each do |ticket|
+              - @own_tickets.each do |ticket|
                 tr.d-flex
                   th.col-4 = ticket.event.name
                   th.col-3 = ticket.place
@@ -29,5 +29,28 @@ h1 User panel
                   th.col-3
                     - if ticket.bought_by.nil?
                       a.btn.btn-primary href=edit_ticket_path(ticket) role="button" Edit
+      - else
+        p You don't have any tickets.
+
+.row
+  .card.w-75
+    .card-body
+      h5.card-title Your bought tickets:
+      - if @bought_tickets.any?
+        .row
+          table.table.table-hover
+            thead
+              tr.d-flex
+                th.col-4 Event
+                th.col-3 Place
+                th.col-2 Price
+                th.col-3 Owner
+            tbody
+              - @bought_tickets.each do |ticket|
+                tr.d-flex
+                  th.col-4 = ticket.event.name
+                  th.col-3 = ticket.place
+                  th.col-2 = ticket.price
+                  th.col-3 = ticket.bought_by.email
       - else
         p You don't have any tickets.

@@ -5,7 +5,8 @@ module UserPanel
     before_action :authenticate_user!
 
     def index
-      @tickets = Ticket.where(owner_id: current_user)
+      @own_tickets = Ticket.where(owner_id: current_user)
+      @bought_tickets = Ticket.where(bought_by: current_user)
     end
   end
 end

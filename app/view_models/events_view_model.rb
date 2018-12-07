@@ -9,9 +9,4 @@ class EventsViewModel
               end
     @events.left_joins(:tickets).group(:event_id, :id)
   end
-
-  def show_event(id)
-    @event = Event.find(id)
-    @tickets = Ticket.new(event: @event)
-  end
 end
