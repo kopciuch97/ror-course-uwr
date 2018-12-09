@@ -18,8 +18,5 @@ FactoryBot.define do
         create_list :sold_ticket, 3, event: event
       end
     end
-
-    factory :event_with_sold_tickets, traits: [:with_sold_tickets]
-    factory :promoted_event, traits: [:promoted]
   end
 end
