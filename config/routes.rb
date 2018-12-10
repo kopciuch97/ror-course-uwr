@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root to: 'home_page#index'
 
   resources :events, only: %i[index show]
-  resources :tickets, only: %i[index create edit update] do
+  resources :tickets, except: %i[index] do
     member do
       post :buy
     end

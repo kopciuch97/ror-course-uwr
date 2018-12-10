@@ -109,4 +109,29 @@ RSpec.describe TicketsController, type: :controller do
       expect(response).to redirect_to(user_panel_root_url)
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:ticket) { create :ticket, owner: user }
+    subject { delete :destroy, params: { id: ticket.id } }
+
+    it do
+      expect { subject }.to change { Ticket.count }.by(-1)
+    end
+
+    it do
+      subject
+      expect(controller.flash[:notice]).to eq('Your ticket has been deleted.')
+    end
+
+    context 'delete ticket which has been sold' do
+      let!(:user2) { FactoryBot.create :user }
+      let!(:ticket) { create :ticket, owner: user, bought_by: user2 }
+
+      it do
+        subject
+        expect(assigns(:ticket)).to eq(ticket)
+        expect(controller.flash[:alert]).to eq('Ticket has already been sold.')
+      end
+    end
+  end
 end
