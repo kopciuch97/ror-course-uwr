@@ -1,1 +1,9 @@
 @import "bootstrap";
+
+html{
+    overflow-x: hidden;
+}
+
+.break-out{
+    margin: 0 calc(50% - 50vw);
+}
