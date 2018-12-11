@@ -28,7 +28,7 @@ RSpec.describe EventsController, type: :controller do
     end
 
     context 'with a few normal events' do
-      let!(:events) { create_list :event, 6}
+      let!(:events) { create_list :event, 6 }
 
       it do
         subject
