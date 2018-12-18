@@ -8,8 +8,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
         a.nav-link href=events_path
           | Events
       - if user_signed_in?
-        li.nav-item class=(current_page?(controller: '/tickets') ? 'active' : '')
-          a.nav-link href=tickets_path
+        li.nav-item class=(current_page?(controller: '/tickets', action: 'new') ? 'active' : '')
+          a.nav-link href=new_ticket_path
             | Sell ticket
 
     ul.navbar-nav.justify-content-end

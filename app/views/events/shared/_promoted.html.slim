@@ -1,6 +1,6 @@
 - unless @events_promoted.empty?
-  .row
-    #carouselExampleIndicators.carousel.slide.w-100 data-ride="carousel"
+  .row.break-out
+    #carouselExampleIndicators.carousel.slide.w-100.wx-0 data-ride="carousel"
       ol.carousel-indicators
         - for i in 0...@events_promoted.size do
           li class=('active' if i == 0) data-slide-to=i data-target="#carouselExampleIndicators"
@@ -8,7 +8,7 @@
         - @events_promoted.each_with_index do |event_promoted, index|
           - if event_promoted.image.attached?
             .carousel-item class=('active' if index == 0)
-              = image_tag event_promoted.image.variant(resize: "1280x720"), class: ""
+              = image_tag event_promoted.image.variant(resize: "1280x720"), class: "d-block w-100"
               .carousel-caption.d-none.d-md-block
                 a.text-light href=event_path(event_promoted)
                   h5 = event_promoted.name

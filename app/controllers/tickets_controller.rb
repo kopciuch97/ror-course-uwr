@@ -3,7 +3,7 @@
 class TicketsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
+  def new
     @events = Event.all
     @ticket = Ticket.new
   end
@@ -48,6 +48,18 @@ class TicketsController < ApplicationController
       flash[:notice] = 'Your ticket has been edited.'
     else
       flash[:alert] = outcome.errors.full_messages.join('. ')
+    end
+
+    redirect_to user_panel_root_url
+  end
+
+  def destroy
+    @ticket = current_user.issued_tickets.find(params[:id])
+    if @ticket.bought_by
+      flash[:alert] = 'Ticket has already been sold.'
+    else
+      @ticket.destroy
+      flash[:notice] = 'Your ticket has been deleted.'
     end
 
     redirect_to user_panel_root_url

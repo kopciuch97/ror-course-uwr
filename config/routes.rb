@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root to: 'home_page#index'
 
   resources :events, only: %i[index show]
-  resources :tickets, only: %i[index create edit update] do
+  resources :tickets, except: %i[index] do
     member do
       post :buy
     end
@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   namespace :user_panel, path: 'users' do
     root to: 'profile#index'
+  end
+
+  namespace :api do
+    get 'users/email_exists', to: 'users#email_exists'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

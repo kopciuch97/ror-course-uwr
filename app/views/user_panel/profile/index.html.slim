@@ -29,6 +29,7 @@ h1 User panel
                   th.col-3
                     - if ticket.bought_by.nil?
                       a.btn.btn-primary href=edit_ticket_path(ticket) role="button" Edit
+                      = link_to "Delete", ticket_path(ticket), method: :delete, class: "btn btn-danger"
       - else
         p You don't have any tickets.
 

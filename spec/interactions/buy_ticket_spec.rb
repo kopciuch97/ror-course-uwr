@@ -4,8 +4,7 @@ require 'rails_helper'
 
 RSpec.describe BuyTicket do
   let(:user) { create :user }
-  let(:event) { create :event_with_sold_tickets }
-  let(:ticket) { event.tickets[0] }
+  let(:ticket) { create :ticket }
   let(:outcome) { BuyTicket.run(ticket: ticket, user: user) }
 
   describe 'Buy ticket' do
@@ -17,7 +16,7 @@ RSpec.describe BuyTicket do
     end
 
     context 'ticket has been sold' do
-      let(:ticket) { event.tickets[3] }
+      let(:ticket) { create :ticket, :sold }
 
       it do
         expect(outcome).to_not be_valid
@@ -29,7 +28,7 @@ RSpec.describe BuyTicket do
     end
 
     context 'user buy his own ticket' do
-      let(:user) { event.tickets[0].owner }
+      let(:user) { ticket.owner }
 
       it do
         expect(outcome).to_not be_valid
