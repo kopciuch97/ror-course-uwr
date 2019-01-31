@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class EventsViewModel
-  def events(name)
-    @events = if name
-                Event.visible.where('name LIKE ?', "%#{name}%")
+  def events(phrase)
+    @events = if phrase
+                Event.visible.where('name LIKE ? OR city LIKE ? OR content LIKE ?',
+                                    "%#{phrase}%", "%#{phrase}%", "%#{phrase}%")
               else
                 Event.visible
               end

@@ -1,57 +1,58 @@
-h1 User panel
+.container
+  h1.text-center.p-2 User panel
 
-.row
-  .card.w-75
-    .card-body
-      h5.card-title Edit your data
-      p.card-text You can change password, email or delete your account.
-      a.btn.btn-primary href=edit_user_registration_path  Edit data
+  .row
+    .card.w-100
+      .card-body
+        h5.card-title Edit your data
+        p.card-text You can change password, email or delete your account.
+        a.btn.btn-primary href=edit_user_registration_path  Edit data
 
-.row
-  .card.w-75
-    .card-body
-      h5.card-title Your tickets:
-      - if @own_tickets.any?
-        .row
-          table.table.table-hover
-            thead
-              tr.d-flex
-                th.col-4 Event
-                th.col-3 Place
-                th.col-2 Price
-                th.col-3 Manage
-            tbody
-              - @own_tickets.each do |ticket|
+  .row
+    .card.w-100
+      .card-body
+        h5.card-title Your tickets:
+        - if @own_tickets.any?
+          .row
+            table.table.table-hover
+              thead
                 tr.d-flex
-                  th.col-4 = ticket.event.name
-                  th.col-3 = ticket.place
-                  th.col-2 = ticket.price
-                  th.col-3
-                    - if ticket.bought_by.nil?
-                      a.btn.btn-primary href=edit_ticket_path(ticket) role="button" Edit
-                      = link_to "Delete", ticket_path(ticket), method: :delete, class: "btn btn-danger"
-      - else
-        p You don't have any tickets.
+                  th.col-4 Event
+                  th.col-3 Place
+                  th.col-2 Price
+                  th.col-3 Manage
+              tbody
+                - @own_tickets.each do |ticket|
+                  tr.d-flex
+                    th.col-4 = ticket.event.name
+                    th.col-3 = ticket.place
+                    th.col-2 = ticket.price
+                    th.col-3
+                      - if ticket.bought_by.nil?
+                        a.btn.btn-primary href=edit_ticket_path(ticket) role="button" Edit
+                        = link_to "Delete", ticket_path(ticket), method: :delete, class: "btn btn-danger"
+        - else
+          p You don't have any tickets.
 
-.row
-  .card.w-75
-    .card-body
-      h5.card-title Your bought tickets:
-      - if @bought_tickets.any?
-        .row
-          table.table.table-hover
-            thead
-              tr.d-flex
-                th.col-4 Event
-                th.col-3 Place
-                th.col-2 Price
-                th.col-3 Owner
-            tbody
-              - @bought_tickets.each do |ticket|
+  .row
+    .card.w-100
+      .card-body
+        h5.card-title Your bought tickets:
+        - if @bought_tickets.any?
+          .row
+            table.table.table-hover
+              thead
                 tr.d-flex
-                  th.col-4 = ticket.event.name
-                  th.col-3 = ticket.place
-                  th.col-2 = ticket.price
-                  th.col-3 = ticket.bought_by.email
-      - else
-        p You don't have any tickets.
+                  th.col-4 Event
+                  th.col-3 Place
+                  th.col-2 Price
+                  th.col-3 Owner
+              tbody
+                - @bought_tickets.each do |ticket|
+                  tr.d-flex
+                    th.col-4 = ticket.event.name
+                    th.col-3 = ticket.place
+                    th.col-2 = ticket.price
+                    th.col-3 = ticket.bought_by.email
+        - else
+          p You don't have any tickets.
