@@ -4,6 +4,11 @@
   .card-body
     h4.card-title = @event.name
     p.card-text = @event.content
+    .container
+      .row
+        .col.text-right
+          'Średnia cena kupionych biletow:
+        .col.text-left = @sold_tickets_average_price
     - if !@event.tickets.empty?
       table.table.table-hover
         thead

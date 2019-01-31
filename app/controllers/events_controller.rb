@@ -9,5 +9,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @tickets = @event.tickets.to_sell
+    @sold_tickets_average_price = @event.tickets.sold_average_price
   end
 end
