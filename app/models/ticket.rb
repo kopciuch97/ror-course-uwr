@@ -8,8 +8,7 @@ class Ticket < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
 
   scope :to_sell, -> { where(bought_by_id: nil) }
-  scope :sold_average_price, -> { where.not(:bought_by => nil ).average(:price) }
-  # scope :sold_average_price, -> { find_by_sql('SELECT AVG(price) from tickets WHERE bought_by_id IS NOT NULL') }
+  scope :sold_average_price, -> { where.not(bought_by: nil).average(:price) }
 
   def buy(user)
     self.bought_by = user
