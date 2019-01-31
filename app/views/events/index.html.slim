@@ -1,12 +1,11 @@
 = render partial: 'events/shared/promoted'
 
-.row
-  - if user_signed_in?
-    = form_tag events_path, method: :get, class: "w-100" do
-      .input-group
-        input.form-control placeholder = ("Name event") type="text" name="name" /
-        .input-group-append
-          button.btn.btn-info type="submit"  Search
+.row.py-1
+  = form_tag events_path, method: :get, class: "w-100" do
+    .input-group
+      input.form-control placeholder = ("Type text to search") type="text" name="name" /
+      .input-group-append
+      button.btn.btn-info type="submit"  Search
 
 .row
   table.table.table-hover
